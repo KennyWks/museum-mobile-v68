@@ -130,6 +130,9 @@ def reactNativeArchitectures() {
 }
 
 android {
+    aaptOptions {
+        cruncherEnabled = false
+    }
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
