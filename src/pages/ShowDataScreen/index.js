@@ -27,19 +27,27 @@ function ShowDataScreen({navigation, route}) {
     setKoleksi([]);
     setLoading(true);
     try {
-      const result = await getData(`${ApiURL}/api/getKoleksi/${koleksi_id}`);
+      const result = await getData(
+        `${ApiURL}/mweb/public/api/getKoleksi/${koleksi_id}`,
+      );
       const data = result.data.data;
+      console.log(data);
+
       setKoleksi({
         nama: data.nama,
         deskripsi: data.deskripsi,
         asal: data.asal,
         image: [
-          {img: `${ApiURL}${data.image}`},
-          {img: `${ApiURL}${data.image_detail}`},
+          {img: `${ApiURL}/museum/files/Motif/image/${data.image}`},
+          {
+            img: `${ApiURL}/museum/files/Motif/image_detail/${data.image_detail}`,
+          },
         ],
       });
+
+      console.log(koleksi);
     } catch (error) {
-      // console.log(error.response);
+      console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -108,7 +116,11 @@ const styles = StyleSheet.create({
   }),
   titleContainer: {
     alignItems: 'center',
-    marginVertical: 20,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    margin: 20,
+    width: '100%',
+    maxHeight: '30%',
   },
   titleText: {
     fontSize: 18,

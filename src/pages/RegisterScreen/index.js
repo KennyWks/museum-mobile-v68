@@ -61,10 +61,10 @@ function RegisterScreen() {
       ]);
     }
     try {
-      const result = await getData(`${ApiURL}/api/getPekerjaan/${condition}`);
+      const result = await getData(`${ApiURL}/mweb/public/api/getPekerjaan/${condition}`);
       setJobs(result.data.data);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       handleErrorMessage('Something Error!');
     }
   };
@@ -72,10 +72,10 @@ function RegisterScreen() {
   const getCountries = async () => {
     setLoading(true);
     try {
-      const result = await getData(`${ApiURL}/api/getCountries`);
+      const result = await getData(`${ApiURL}/mweb/public/api/getCountries`);
       setCountries(result.data);
     } catch (error) {
-      // console.log(error);
+      console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -91,11 +91,11 @@ function RegisterScreen() {
   const getStates = async value => {
     setLoading(true);
     try {
-      const result = await getData(`${ApiURL}/api/getStates/${value}`);
+      const result = await getData(`${ApiURL}/mweb/public/api/getStates/${value}`);
       setStates(result.data);
       setCities([]);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -105,11 +105,11 @@ function RegisterScreen() {
     setLoading(true);
     try {
       const result = await getData(
-        `${ApiURL}/api/getCities/${countryCode}/${value}`,
+        `${ApiURL}/mweb/public/api/getCities/${countryCode}/${value}`,
       );
       setCities(result.data);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -118,7 +118,7 @@ function RegisterScreen() {
   const onSave = async () => {
     setLoading(true);
     try {
-      const result = await postData(`${ApiURL}/api/kunjungan`, form);
+      const result = await postData(`${ApiURL}/mweb/public/api/kunjungan`, form);
       const {message, success} = result.data;
       if (success) {
         setForm('reset');
@@ -131,7 +131,7 @@ function RegisterScreen() {
         setCities([]);
       }
     } catch (error) {
-      // console.log(error.response);
+      console.log(error.response);
       const data = error.response.data.errors;
       if (data) {
         handleEachErrorMessage(data);

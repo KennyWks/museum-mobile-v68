@@ -2,7 +2,7 @@ import {english, indonesian} from '../../utils';
 import ActionType from './globalActionType';
 
 let globalState = {
-  url: 'http://192.168.134.60:8083',
+  url: 'http://192.168.18.23',
   languages: indonesian,
 };
 

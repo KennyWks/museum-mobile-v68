@@ -24,7 +24,7 @@ function SaranScreen() {
   const onSave = async () => {
     setLoading(true);
     try {
-      const result = await postData(`${ApiURL}/api/saran`, form);
+      const result = await postData(`${ApiURL}/mweb/public/api/saran`, form);
       const {message, success} = result.data;
       if (success) {
         setForm('reset');

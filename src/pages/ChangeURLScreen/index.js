@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 import {Button, Gap, Input, Loading} from '../../components';
 import {colors} from '../../utils';
@@ -9,6 +9,7 @@ import ActionType from '../../redux/reducer/globalActionType';
 
 function ChangeURLScreen() {
   const languages = useSelector(state => state.languages);
+  const urlGlobal = useSelector(state => state.url);
   const dispatch = useDispatch();
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ function ChangeURLScreen() {
         <View style={styles.container}>
           <View style={styles.page}>
             <Input
-              label={languages.example}
+              label={`URL yang tersimpan : \n ${urlGlobal}`}
               value={url}
               onChangeText={value => setUrl(value)}
               numKeyboardPad={false}
@@ -44,6 +45,7 @@ function ChangeURLScreen() {
               title={languages.button.buttonSave.label}
               type="dark"
             />
+            <Text>{languages.example}</Text>
           </View>
         </View>
       )}

@@ -49,7 +49,9 @@ function GetStarted() {
 
   const getArticles = async () => {
     try {
-      const resultArticles = await getData(`${ApiURL}/api/getArtikel`);
+      const resultArticles = await getData(
+        `${ApiURL}/mweb/public/api/getArtikel`,
+      );
       setArticles(resultArticles.data.data);
     } catch (error) {
       // console.log(error);
@@ -59,7 +61,9 @@ function GetStarted() {
 
   const getEvents = async () => {
     try {
-      const resultEvents = await getData(`${ApiURL}/api/getKegiatan`);
+      const resultEvents = await getData(
+        `${ApiURL}/mweb/public/api/getKegiatan`,
+      );
       setEvents(resultEvents.data.data);
     } catch (error) {
       // console.log(error);
@@ -109,7 +113,7 @@ function GetStarted() {
                 <TouchableHighlight
                   key={i}
                   onPress={() => {
-                    Linking.openURL(`${ApiURL}/event/${val.kegiatan_id}`);
+                    Linking.openURL(`${ApiURL}/mweb/public`);
                   }}>
                   <View style={styles.cardItem}>
                     <View style={styles.cardImage}>
@@ -160,7 +164,9 @@ function GetStarted() {
                 <TouchableHighlight
                   key={i}
                   onPress={() => {
-                    Linking.openURL(`${ApiURL}/artikel/${val.artikel_id}`);
+                    Linking.openURL(
+                      `${ApiURL}/mweb/public/artikel/${val.artikel_id}`,
+                    );
                   }}>
                   <View style={styles.cardNews}>
                     <Text style={styles.newsTitle}>{val.judul}</Text>
