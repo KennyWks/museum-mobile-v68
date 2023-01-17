@@ -15,6 +15,9 @@ function ShowDataScreen({navigation, route}) {
 
   const tabBarHeight = useBottomTabBarHeight();
   const ApiURL = useSelector(state => state.url);
+  const pathURL = useSelector(state => state.path);
+  const pathImage = useSelector(state => state.images);
+
   const languages = useSelector(state => state.languages);
   const [koleksi, setKoleksi] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,7 +31,7 @@ function ShowDataScreen({navigation, route}) {
     setLoading(true);
     try {
       const result = await getData(
-        `${ApiURL}/mweb/public/api/getKoleksi/${koleksi_id}`,
+        `${ApiURL}${pathURL}/api/getKoleksi/${koleksi_id}`,
       );
       const data = result.data.data;
       console.log(data);
@@ -38,9 +41,9 @@ function ShowDataScreen({navigation, route}) {
         deskripsi: data.deskripsi,
         asal: data.asal,
         image: [
-          {img: `${ApiURL}/museum/files/Motif/image/${data.image}`},
+          {img: `${ApiURL}${pathImage}/image/${data.image}`},
           {
-            img: `${ApiURL}/museum/files/Motif/image_detail/${data.image_detail}`,
+            img: `${ApiURL}${pathImage}/image_detail/${data.image_detail}`,
           },
         ],
       });

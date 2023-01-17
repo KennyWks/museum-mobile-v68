@@ -30,6 +30,7 @@ function GetStarted() {
 
   const languages = useSelector(state => state.languages);
   const ApiURL = useSelector(state => state.url);
+  const pathURL = useSelector(state => state.path);
 
   useEffect(() => {
     setLoading(true);
@@ -50,7 +51,7 @@ function GetStarted() {
   const getArticles = async () => {
     try {
       const resultArticles = await getData(
-        `${ApiURL}/mweb/public/api/getArtikel`,
+        `${ApiURL}${pathURL}/api/getArtikel`,
       );
       setArticles(resultArticles.data.data);
     } catch (error) {
@@ -61,9 +62,7 @@ function GetStarted() {
 
   const getEvents = async () => {
     try {
-      const resultEvents = await getData(
-        `${ApiURL}/mweb/public/api/getKegiatan`,
-      );
+      const resultEvents = await getData(`${ApiURL}${pathURL}/api/getKegiatan`);
       setEvents(resultEvents.data.data);
     } catch (error) {
       // console.log(error);
@@ -113,7 +112,7 @@ function GetStarted() {
                 <TouchableHighlight
                   key={i}
                   onPress={() => {
-                    Linking.openURL(`${ApiURL}/mweb/public`);
+                    Linking.openURL(`${ApiURL}${pathURL}`);
                   }}>
                   <View style={styles.cardItem}>
                     <View style={styles.cardImage}>
@@ -165,7 +164,7 @@ function GetStarted() {
                   key={i}
                   onPress={() => {
                     Linking.openURL(
-                      `${ApiURL}/mweb/public/artikel/${val.artikel_id}`,
+                      `${ApiURL}${pathURL}/artikel/${val.artikel_id}`,
                     );
                   }}>
                   <View style={styles.cardNews}>

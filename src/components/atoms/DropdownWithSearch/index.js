@@ -36,7 +36,7 @@ const DropdownWithSearch = ({label, data, onValueChange}) => {
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
         containerStyle={{backgroundColor: colors.dark}}
-        activeColor={colors.secondary}
+        activeColor={colors.middleLight}
         data={data}
         search
         maxHeight={300}
@@ -78,13 +78,15 @@ const styles = StyleSheet.create({
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 14,
+    color: colors.light,
   },
   placeholderStyle: {
     fontSize: 16,
+    color: colors.light,
   },
   selectedText: {
     fontSize: 16,
-    color: colors.text.default,
+    color: colors.text.secondary,
   },
   iconStyle: {
     width: 20,
@@ -93,6 +95,6 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
-    backgroundColor: colors.dark,
+    backgroundColor: colors.light,
   },
 });

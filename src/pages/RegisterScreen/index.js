@@ -26,6 +26,8 @@ function RegisterScreen() {
 
   const tabBarHeight = useBottomTabBarHeight();
   const ApiURL = useSelector(state => state.url);
+  const pathURL = useSelector(state => state.path);
+
   const languages = useSelector(state => state.languages);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -61,7 +63,7 @@ function RegisterScreen() {
     }
     try {
       const result = await getData(
-        `${ApiURL}/mweb/public/api/getPekerjaan/${condition}`,
+        `${ApiURL}${pathURL}/api/getPekerjaan/${condition}`,
       );
       setJobs(result.data.data);
     } catch (error) {
@@ -73,7 +75,7 @@ function RegisterScreen() {
   const getCountries = async () => {
     setLoading(true);
     try {
-      const result = await getData(`${ApiURL}/mweb/public/api/getCountries`);
+      const result = await getData(`${ApiURL}${pathURL}/api/getCountries`);
       setCountries(result.data);
     } catch (error) {
       console.log(error.response);
@@ -93,7 +95,7 @@ function RegisterScreen() {
     setLoading(true);
     try {
       const result = await getData(
-        `${ApiURL}/mweb/public/api/getStates/${value}`,
+        `${ApiURL}${pathURL}/api/getStates/${value}`,
       );
       setStates(result.data);
       setCities([]);
@@ -108,7 +110,7 @@ function RegisterScreen() {
     setLoading(true);
     try {
       const result = await getData(
-        `${ApiURL}/mweb/public/api/getCities/${value}`,
+        `${ApiURL}${pathURL}/api/getCities/${value}`,
       );
       setCities(result.data);
     } catch (error) {
@@ -121,10 +123,7 @@ function RegisterScreen() {
   const onSave = async () => {
     setLoading(true);
     try {
-      const result = await postData(
-        `${ApiURL}/mweb/public/api/kunjungan`,
-        form,
-      );
+      const result = await postData(`${ApiURL}${pathURL}/api/kunjungan`, form);
       const {message, success} = result.data;
       if (success) {
         setForm('reset');
@@ -241,7 +240,7 @@ function RegisterScreen() {
               getCities(value);
             }}
           />
-          <Gap height={5} />
+          <Gap height={10} />
           <DropdownWithSearch
             label={languages.formVisitors.states_provinces}
             data={states}

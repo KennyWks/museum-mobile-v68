@@ -12,6 +12,8 @@ import {connect, useSelector} from 'react-redux';
 function SaranScreen() {
   const tabBarHeight = useBottomTabBarHeight();
   const ApiURL = useSelector(state => state.url);
+  const pathURL = useSelector(state => state.path);
+
   const languages = useSelector(state => state.languages);
   const [form, setForm] = useForm({
     nama: '',
@@ -24,7 +26,7 @@ function SaranScreen() {
   const onSave = async () => {
     setLoading(true);
     try {
-      const result = await postData(`${ApiURL}/mweb/public/api/saran`, form);
+      const result = await postData(`${ApiURL}${pathURL}/api/saran`, form);
       const {message, success} = result.data;
       if (success) {
         setForm('reset');
