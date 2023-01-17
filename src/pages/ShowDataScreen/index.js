@@ -34,7 +34,6 @@ function ShowDataScreen({navigation, route}) {
         `${ApiURL}${pathURL}/api/getKoleksi/${koleksi_id}`,
       );
       const data = result.data.data;
-      console.log(data);
 
       setKoleksi({
         nama: data.nama,
@@ -47,10 +46,8 @@ function ShowDataScreen({navigation, route}) {
           },
         ],
       });
-
-      console.log(koleksi);
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);

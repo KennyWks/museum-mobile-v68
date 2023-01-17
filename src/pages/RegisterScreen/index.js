@@ -67,7 +67,7 @@ function RegisterScreen() {
       );
       setJobs(result.data.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error.response);
       handleErrorMessage('Something Error!');
     }
   };
@@ -78,7 +78,7 @@ function RegisterScreen() {
       const result = await getData(`${ApiURL}${pathURL}/api/getCountries`);
       setCountries(result.data);
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -100,7 +100,7 @@ function RegisterScreen() {
       setStates(result.data);
       setCities([]);
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -114,7 +114,7 @@ function RegisterScreen() {
       );
       setCities(result.data);
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -136,7 +136,7 @@ function RegisterScreen() {
         setCities([]);
       }
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       const data = error.response.data.errors;
       if (data) {
         handleEachErrorMessage(data);
