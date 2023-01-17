@@ -27,7 +27,6 @@ function RegisterScreen() {
   const tabBarHeight = useBottomTabBarHeight();
   const ApiURL = useSelector(state => state.url);
   const languages = useSelector(state => state.languages);
-  const [countryCode, setCountryCode] = useState([]);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -61,7 +60,9 @@ function RegisterScreen() {
       ]);
     }
     try {
-      const result = await getData(`${ApiURL}/mweb/public/api/getPekerjaan/${condition}`);
+      const result = await getData(
+        `${ApiURL}/mweb/public/api/getPekerjaan/${condition}`,
+      );
       setJobs(result.data.data);
     } catch (error) {
       console.log(error);
@@ -91,11 +92,13 @@ function RegisterScreen() {
   const getStates = async value => {
     setLoading(true);
     try {
-      const result = await getData(`${ApiURL}/mweb/public/api/getStates/${value}`);
+      const result = await getData(
+        `${ApiURL}/mweb/public/api/getStates/${value}`,
+      );
       setStates(result.data);
       setCities([]);
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -105,11 +108,11 @@ function RegisterScreen() {
     setLoading(true);
     try {
       const result = await getData(
-        `${ApiURL}/mweb/public/api/getCities/${countryCode}/${value}`,
+        `${ApiURL}/mweb/public/api/getCities/${value}`,
       );
       setCities(result.data);
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       handleErrorMessage('Something Error!');
     }
     setLoading(false);
@@ -118,7 +121,10 @@ function RegisterScreen() {
   const onSave = async () => {
     setLoading(true);
     try {
-      const result = await postData(`${ApiURL}/mweb/public/api/kunjungan`, form);
+      const result = await postData(
+        `${ApiURL}/mweb/public/api/kunjungan`,
+        form,
+      );
       const {message, success} = result.data;
       if (success) {
         setForm('reset');
@@ -232,7 +238,7 @@ function RegisterScreen() {
             onValueChange={(label, value) => {
               setForm('asal_negara', label);
               getStates(value);
-              setCountryCode(value);
+              getCities(value);
             }}
           />
           <Gap height={5} />
@@ -241,9 +247,6 @@ function RegisterScreen() {
             data={states}
             onValueChange={(label, value) => {
               setForm('propinsi', label);
-              if (value) {
-                getCities(value);
-              }
             }}
           />
           <Gap height={5} />
