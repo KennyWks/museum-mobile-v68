@@ -2,12 +2,12 @@ import {english, indonesian} from '../../utils';
 import ActionType from './globalActionType';
 
 let globalState = {
-  url: 'http://192.168.103.60:8083',
-  path: '',
-  image: '',
-  // url: 'http://192.168.18.23',
-  // path: '/mweb/public',
-  // image: '/museum/files/Motif',
+  // url: 'http://192.168.103.60:8083',
+  // path: '',
+  // image: '',
+  url: 'http://192.168.18.23',
+  path: '/mweb/public',
+  image: '/museum/files/Motif',
   languages: indonesian,
 };
 
